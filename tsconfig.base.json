@@ -14,7 +14,11 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@react-monorepo/dashboard": ["libs/dashboard/src/index.ts"],
+      "@react-monorepo/shared": ["libs/shared/ui/src/index.ts"],
+      "@react-monorepo/usermanagement": ["libs/usermanagement/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }
