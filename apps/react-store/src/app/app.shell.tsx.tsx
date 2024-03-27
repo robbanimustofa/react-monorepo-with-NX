@@ -1,4 +1,5 @@
 import { createBrowserRouter, Navigate } from 'react-router-dom';
+import { Home, MainLayout } from '../layout';
 
 
 const token = window.localStorage.getItem('token');
@@ -7,11 +8,11 @@ const startMenu = 'start-menu'
 const appShell = createBrowserRouter([
   {
     path: '/',
-    element: token ? <div>Main</div> : <div>Home</div>,
+    element: token ? <MainLayout /> : <Home />,
     children: [
       {
         index: true,
-        element: <Navigate to={startMenu} replace />
+        element: <Navigate to={dashboard} replace />
       },
     ]
   },
