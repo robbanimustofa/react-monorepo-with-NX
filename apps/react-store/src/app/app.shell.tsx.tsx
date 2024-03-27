@@ -1,19 +1,57 @@
-import { createBrowserRouter, Navigate } from 'react-router-dom';
+import { createBrowserRouter, Navigate, Outlet, RouteObject } from 'react-router-dom';
 import { Home, MainLayout } from '../layout';
+import { Suspense } from 'react';
+import { DashboardTable } from '@react-monorepo/dashboard';
 
 
 const token = window.localStorage.getItem('token');
 const dashboard = 'dashboard'
 const startMenu = 'start-menu'
+
+const dashboards: RouteObject = {
+  path: 'dashboards',
+  element: <div>
+    <Outlet />
+  </div>,
+  children: [
+    {
+      index: true,
+      element: (
+        <Suspense>
+          <DashboardTable />
+        </Suspense>
+      )
+    },]
+}
+
 const appShell = createBrowserRouter([
   {
     path: '/',
-    element: token ? <MainLayout /> : <Home />,
+    element: !token ? <MainLayout /> : <Home />,
     children: [
       {
         index: true,
         element: <Navigate to={dashboard} replace />
       },
+      dashboards
+      // {
+      //   path: 'dashboard',
+      //   element: <div>
+      //     <Outlet />
+      //   </div>,
+      //   children: [
+      //     {
+      //       index: true,
+      //       element: (
+      //         <Suspense>
+      //           {/* <MenuPage /> */}
+      //           <DashboardTable />
+      //         </Suspense>
+      //       )
+      //     },
+      //   ]
+      // },
+
     ]
   },
   // {

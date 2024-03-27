@@ -1,7 +1,7 @@
 import styles from './dashboard-table.module.css';
 
 /* eslint-disable-next-line */
-export interface DashboardTableProps {}
+export interface DashboardTableProps { }
 
 export function DashboardTable(props: DashboardTableProps) {
   return (
